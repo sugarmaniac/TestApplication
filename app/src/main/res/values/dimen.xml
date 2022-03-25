@@ -10,6 +10,7 @@
 
     <dimen name="radius8">8dp</dimen>
     <dimen name="radius16">16dp</dimen>
+    <dimen name="radius75">75dp</dimen>
 
     <dimen name="text8">8sp</dimen>
     <dimen name="text12">12sp</dimen>
