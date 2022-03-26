@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Adapter
-import android.widget.Button
+
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -31,8 +31,6 @@ class ListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_list, container, false)
-        view.findViewById<Button>(R.id.button).setOnClickListener { navigateToDevice() }
-        view.findViewById<Button>(R.id.button2).setOnClickListener { navigateToEdit() }
 
         sharedViewModel.fetchData()
         initObserver()

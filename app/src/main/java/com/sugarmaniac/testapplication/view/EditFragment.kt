@@ -12,11 +12,12 @@ import com.sugarmaniac.testapplication.viewModel.BaseViewModel
 class EditFragment : Fragment() {
 
     private val sharedViewModel : BaseViewModel by activityViewModels()
+    private var deviceSN : Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            deviceSN = requireArguments().getInt("deviceSN")
         }
     }
 
@@ -25,6 +26,13 @@ class EditFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+
+
         return inflater.inflate(R.layout.fragment_edit, container, false)
+    }
+
+    private fun changeDeviceTitle(title: String){
+        sharedViewModel.changeDeviceTitle(title, deviceSN)
     }
 }
