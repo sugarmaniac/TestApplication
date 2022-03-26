@@ -24,6 +24,7 @@ class BaseViewModel: ViewModel() {
                 .subscribeWith(object: DisposableSingleObserver<DevicesModel>(){
                     override fun onSuccess(t: DevicesModel) {
                         t.Devices.sortedBy { it.PK_Device }
+                        t.Devices.forEachIndexed { index, device -> device.Device_Name = "HOME NUMBER " + (index+1) }
                         deviceData.value = t.Devices.toMutableList()
                     }
                     override fun onError(e: Throwable) {
