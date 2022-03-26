@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.sugarmaniac.testapplication.ListFragment"
+        android:name="com.sugarmaniac.testapplication.view.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/deviceFragment"
-        android:name="com.sugarmaniac.testapplication.DeviceFragment"
+        android:name="com.sugarmaniac.testapplication.view.DeviceFragment"
         android:label="fragment_device"
         tools:layout="@layout/fragment_device" />
     <fragment
         android:id="@+id/editFragment"
-        android:name="com.sugarmaniac.testapplication.EditFragment"
+        android:name="com.sugarmaniac.testapplication.view.EditFragment"
         android:label="fragment_edit"
         tools:layout="@layout/fragment_edit" />
 </navigation>
