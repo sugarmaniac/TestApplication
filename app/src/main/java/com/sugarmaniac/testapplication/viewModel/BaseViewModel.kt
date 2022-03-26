@@ -22,14 +22,19 @@ class BaseViewModel: ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object: DisposableSingleObserver<DevicesModel>(){
                     override fun onSuccess(t: DevicesModel) {
-                        deviceData.value
+                        t.Devices.sortedBy { it.PK_Device }
+                        deviceData.value = t
                     }
-
                     override fun onError(e: Throwable) {
                         TODO("Not yet implemented")
                     }
                 })
         )
+    }
+
+    fun changeDeviceTitle(title: String, deviceSN: Int?) {
+        deviceData.value?.Devices?.single { it.PK_Device == deviceSN }?.Device_Name = title
+        deviceData.value = deviceData.value
     }
 
 }
