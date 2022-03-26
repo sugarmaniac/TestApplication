@@ -1,22 +1,22 @@
 package com.sugarmaniac.testapplication.view
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sugarmaniac.testapplication.R
 import com.sugarmaniac.testapplication.model.BindableRecyclerViewAdapter
 import com.sugarmaniac.testapplication.model.Device
 import com.sugarmaniac.testapplication.viewModel.BaseViewModel
+
 
 class ListFragment : Fragment() , BindableRecyclerViewAdapter.ItemClickListener {
 
@@ -55,6 +55,10 @@ class ListFragment : Fragment() , BindableRecyclerViewAdapter.ItemClickListener 
         recyclerViewAdapter = BindableRecyclerViewAdapter()
         recyclerView.adapter = recyclerViewAdapter
         recyclerViewAdapter.setOnClickListener(this)
+
+        val itemDecorator = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+        itemDecorator.setDrawable(requireContext().getDrawable(R.drawable.divider)!!)
+        recyclerView.addItemDecoration(itemDecorator)
     }
 
     private fun showDeleteDialog(position: Int) {
@@ -70,17 +74,11 @@ class ListFragment : Fragment() , BindableRecyclerViewAdapter.ItemClickListener 
         sharedViewModel.deleteDevice(position)
     }
 
-    private fun navigateToDevice(){
-        findNavController().navigate(R.id.action_listFragment_to_deviceFragment)
-    }
-
-    private fun navigateToEdit(){
-        findNavController().navigate(R.id.action_listFragment_to_editFragment)
-    }
-
     //Click Listener
     override fun onItemClick(device: Device) {
-        navigateToDevice()
+        val bundle = Bundle()
+        bundle.putParcelable("device", device)
+        findNavController().navigate(R.id.action_listFragment_to_deviceFragment, bundle)
     }
 
     override fun onDeleteClick(position: Int) {
@@ -88,7 +86,9 @@ class ListFragment : Fragment() , BindableRecyclerViewAdapter.ItemClickListener 
     }
 
     override fun onEditClick(device: Device) {
-        navigateToEdit()
+        val bundle = Bundle()
+        bundle.putParcelable("device", device)
+        findNavController().navigate(R.id.action_listFragment_to_editFragment, bundle)
     }
 
 }

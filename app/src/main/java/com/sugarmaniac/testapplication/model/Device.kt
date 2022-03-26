@@ -1,7 +1,10 @@
 package com.sugarmaniac.testapplication.model
 
+import android.os.Parcelable
 import com.sugarmaniac.testapplication.R
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Device(
     val Firmware: String,
     val InternalIP: String,
@@ -16,7 +19,7 @@ data class Device(
     val Server_Device: String,
     val Server_Event: String,
     var Device_Name : String? = null
-){
+): Parcelable {
     fun getTitle() : String{
         return if (Device_Name.isNullOrBlank()){
             "HOME NUMBER"
