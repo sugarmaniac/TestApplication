@@ -5,16 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.sugarmaniac.testapplication.R
+import com.sugarmaniac.testapplication.databinding.FragmentDeviceBinding
+import com.sugarmaniac.testapplication.model.Device
 import com.sugarmaniac.testapplication.viewModel.BaseViewModel
 
 class DeviceFragment : Fragment() {
 
-    private val sharedViewModel : BaseViewModel by activityViewModels()
+    private var device : Device? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
+            device = arguments?.getParcelable("device")
+        }
     }
 
     override fun onCreateView(
@@ -22,6 +28,9 @@ class DeviceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_device, container, false)
+        val dataBind = DataBindingUtil.inflate<FragmentDeviceBinding>(inflater, R.layout.fragment_device, container, false)
+        dataBind.device = device
+
+        return dataBind.root
     }
 }

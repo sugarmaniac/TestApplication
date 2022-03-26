@@ -1,113 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.EditFragment">
 
-    <include
-        android:id="@+id/profile_layout"
-        layout="@layout/profile_layout"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/image_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_layout"
-        app:cardCornerRadius="@dimen/radius16"
-        android:layout_marginStart="@dimen/margin16"
-        android:layout_marginTop="@dimen/margin16"
-        android:backgroundTint="@color/image_bg_color"
-        >
-        <ImageView
-            android:id="@+id/device_image"
-            android:src="@drawable/vera_edge_big"
-            android:layout_width="@dimen/button80"
-            android:layout_height="@dimen/button80"
-            android:scaleType="fitCenter"/>
-    </androidx.cardview.widget.CardView>
-
-    <EditText
-        android:id="@+id/device_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:text="Home Number 1"
-        android:enabled="true"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text32"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:hint="Device Title"
-        app:layout_constraintBottom_toBottomOf="@+id/image_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_container"
-        app:layout_constraintTop_toTopOf="@+id/image_container"
-        android:layout_marginStart="@dimen/margin8"
-        android:layout_marginEnd="@dimen/margin8"/>
-
-    <TextView
-        android:id="@+id/device_sn"
-        android:text="SN: 156156"
-        android:textSize="@dimen/text20"
-        android:textColor="@color/details_color"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/image_container"
-        app:layout_constraintStart_toStartOf="@id/image_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="@dimen/margin16"
-        android:layout_marginTop="@dimen/margin32"
-        />
-
-    <TextView
-        android:id="@+id/device_mac"
-        android:text="MAC ADRESS: E2:E4:5F:BC:AE:23"
-        android:textSize="@dimen/text20"
-        android:textColor="@color/details_color"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/device_sn"
-        app:layout_constraintStart_toStartOf="@id/image_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="@dimen/margin16"
-
-        />
-
-    <TextView
-        android:id="@+id/device_firmware"
-        android:text="Firmware: 1.7.3456"
-        android:textSize="@dimen/text20"
-        android:textColor="@color/details_color"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/device_mac"
-        app:layout_constraintStart_toStartOf="@id/image_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="@dimen/margin16"
-        android:layout_marginTop="@dimen/margin32"
-        />
-
-    <TextView
-        android:id="@+id/device_model"
-        android:text="Model: Vera Edge"
-        android:textSize="@dimen/text20"
-        android:textColor="@color/details_color"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/device_firmware"
-        app:layout_constraintStart_toStartOf="@id/image_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="@dimen/margin16"
-        />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="device"
+            type="com.sugarmaniac.testapplication.model.Device" />
+    </data>
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".view.EditFragment">
+
+        <include
+            android:id="@+id/profile_layout"
+            layout="@layout/profile_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/image_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_layout"
+            app:cardCornerRadius="@dimen/radius16"
+            android:layout_marginStart="@dimen/margin16"
+            android:layout_marginTop="@dimen/margin16"
+            android:backgroundTint="@color/image_bg_color"
+            >
+            <ImageView
+                android:id="@+id/device_image"
+                android:layout_width="@dimen/button80"
+                android:layout_height="@dimen/button80"
+                android:scaleType="fitCenter"
+                app:imageResource="@{device.imageId}"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <EditText
+            android:id="@+id/device_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="@{device.device_Name}"
+            android:enabled="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text32"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:hint="Device Title"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/image_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_container"
+            app:layout_constraintTop_toTopOf="@+id/image_container"
+            android:layout_marginStart="@dimen/margin8"
+            android:layout_marginEnd="@dimen/margin8"/>
+
+        <TextView
+            android:id="@+id/device_sn"
+            android:text="@{@string/generic_SN(device.PK_Device)}"
+            android:textSize="@dimen/text20"
+            android:textColor="@color/details_color"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/image_container"
+            app:layout_constraintStart_toStartOf="@id/image_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin16"
+            android:layout_marginTop="@dimen/margin32"
+            />
+
+        <TextView
+            android:id="@+id/device_mac"
+            android:text="@{@string/generic_MAC(device.macAddress)}"
+            android:textSize="@dimen/text20"
+            android:textColor="@color/details_color"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/device_sn"
+            app:layout_constraintStart_toStartOf="@id/image_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin16"
+
+            />
+
+        <TextView
+            android:id="@+id/device_firmware"
+            android:text="@{@string/generic_FIRMWARE(device.firmware)}"
+            android:textSize="@dimen/text20"
+            android:textColor="@color/details_color"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/device_mac"
+            app:layout_constraintStart_toStartOf="@id/image_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin16"
+            android:layout_marginTop="@dimen/margin32"
+            />
+
+        <TextView
+            android:id="@+id/device_model"
+            android:text="@{@string/generic_Model(device.platform)}"
+            android:textSize="@dimen/text20"
+            android:textColor="@color/details_color"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/device_firmware"
+            app:layout_constraintStart_toStartOf="@id/image_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin16"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+

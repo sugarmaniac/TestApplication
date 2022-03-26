@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="device"
+            type="com.sugarmaniac.testapplication.model.Device" />
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -27,17 +37,18 @@
         >
         <ImageView
             android:id="@+id/device_image"
-            android:src="@drawable/vera_edge_big"
             android:layout_width="@dimen/button80"
             android:layout_height="@dimen/button80"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter"
+            app:imageResource="@{device.imageId}"
+            />
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/device_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Home Number 1"
+        android:text="@{device.title}"
         android:textColor="@color/black"
         android:textSize="@dimen/text32"
         android:textStyle="bold"
@@ -51,7 +62,7 @@
 
     <TextView
         android:id="@+id/device_sn"
-        android:text="SN: 156156"
+        android:text="@{@string/generic_SN(device.PK_Device)}"
         android:textSize="@dimen/text20"
         android:textColor="@color/details_color"
         android:layout_width="0dp"
@@ -65,7 +76,7 @@
 
     <TextView
         android:id="@+id/device_mac"
-        android:text="MAC ADRESS: E2:E4:5F:BC:AE:23"
+        android:text="@{@string/generic_MAC(device.macAddress)}"
         android:textSize="@dimen/text20"
         android:textColor="@color/details_color"
         android:layout_width="0dp"
@@ -79,7 +90,7 @@
 
     <TextView
         android:id="@+id/device_firmware"
-        android:text="Firmware: 1.7.3456"
+        android:text="@{@string/generic_FIRMWARE(device.firmware)}"
         android:textSize="@dimen/text20"
         android:textColor="@color/details_color"
         android:layout_width="0dp"
@@ -93,7 +104,7 @@
 
     <TextView
         android:id="@+id/device_model"
-        android:text="Model: Vera Edge"
+        android:text="@{@string/generic_Model(device.platform)}"
         android:textSize="@dimen/text20"
         android:textColor="@color/details_color"
         android:layout_width="0dp"
@@ -104,3 +115,5 @@
         android:layout_marginEnd="@dimen/margin16"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
