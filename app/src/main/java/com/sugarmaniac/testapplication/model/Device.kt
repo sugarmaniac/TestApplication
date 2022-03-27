@@ -14,7 +14,7 @@ data class Device(
     val PK_Device: Int,
     val PK_DeviceSubType: Int,
     val PK_DeviceType: Int,
-    val Platform: String,
+    var Platform: String = "",
     val Server_Account: String,
     val Server_Device: String,
     val Server_Event: String,
