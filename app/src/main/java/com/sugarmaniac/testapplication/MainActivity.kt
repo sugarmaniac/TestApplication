@@ -3,7 +3,6 @@ package com.sugarmaniac.testapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.sugarmaniac.testapplication.viewModel.BaseViewModel
 

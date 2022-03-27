@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import com.sugarmaniac.testapplication.R
 import com.sugarmaniac.testapplication.databinding.FragmentDeviceBinding
 import com.sugarmaniac.testapplication.model.Device
-import com.sugarmaniac.testapplication.viewModel.BaseViewModel
 
 class DeviceFragment : Fragment() {
 
