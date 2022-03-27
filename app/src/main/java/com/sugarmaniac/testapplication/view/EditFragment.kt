@@ -21,6 +21,7 @@ class EditFragment : Fragment() {
 
     private val sharedViewModel : BaseViewModel by activityViewModels()
     private var device : Device? = null
+    private lateinit var editText : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,20 +39,20 @@ class EditFragment : Fragment() {
         val view = fragmentEditBinding.root
         fragmentEditBinding.device = device
 
-        val editText = view.findViewById<EditText>(R.id.device_title)
-        editText.requestFocus()
-
+        editText = view.findViewById<EditText>(R.id.device_title)
         editText.addTextChangedListener { text -> changeDeviceTitle(text.toString()) }
-
-        val imm: InputMethodManager? = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-
-        //should find non deprecated method
-        imm?.showSoftInput(editText, InputMethodManager.SHOW_FORCED)
+        editText.requestFocus()
 
         return view
     }
 
     private fun changeDeviceTitle(title: String){
         sharedViewModel.changeDeviceTitle(title, device?.PK_Device)
+        showKeyboard()
+    }
+
+    private fun showKeyboard(){
+        val imm: InputMethodManager? = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm?.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
     }
 }
